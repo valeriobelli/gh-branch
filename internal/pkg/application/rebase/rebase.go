@@ -20,7 +20,7 @@ func Rebase(rebaseType string) {
 
 	var stdErr bytes.Buffer
 
-	cmd := exec.Command("git", "pull", "--rebase", rebaseType, "origin", pullRequestInfo.BaseBranch)
+	cmd := exec.Command("git", "pull", fmt.Sprintf("--rebase=%s", rebaseType), "origin", pullRequestInfo.BaseBranch)
 
 	cmd.Stderr = &stdErr
 
