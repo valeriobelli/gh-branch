@@ -7,9 +7,14 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/valeriobelli/gh-branch/internal/pkg/infrastructure/gh"
+	"github.com/valeriobelli/gh-branch/internal/pkg/infrastructure/spinner"
 )
 
 func Rebase(rebaseType string) {
+	spinner := spinner.NewSpinner()
+
+	spinner.Start()
+
 	pullRequestInfo, err := gh.RetrievePullRequestInformation()
 
 	if err != nil {
@@ -29,6 +34,8 @@ func Rebase(rebaseType string) {
 
 		return
 	}
+
+	spinner.Stop()
 
 	fmt.Printf("%s Branch rebased.\n", color.GreenString("✓"))
 }
