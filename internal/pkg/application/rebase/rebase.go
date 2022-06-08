@@ -18,6 +18,8 @@ func Rebase(rebaseType string) {
 	pullRequestInfo, err := gh.RetrievePullRequestInformation()
 
 	if err != nil {
+		spinner.Stop()
+
 		fmt.Printf("%s %s\n", color.RedString("✘"), err.Error())
 
 		return
@@ -30,6 +32,8 @@ func Rebase(rebaseType string) {
 	cmd.Stderr = &stdErr
 
 	if err = cmd.Run(); err != nil {
+		spinner.Stop()
+
 		fmt.Printf("%s %s\n", color.RedString("✘"), stdErr.String())
 
 		return
